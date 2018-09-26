@@ -31,3 +31,13 @@ const today = {
 }; 
 
 console.log(today.meals[3]); 
+
+const hobbit = {name: 'Frodo', jobTitle: 'Keep of the Ring'};
+const comedian = {name: 'Jim Carey', jobTitle: 'Pet Detective'};
+const demonHunter = {name: 'Wynonna Earp', jobTitle: 'Holder of Peacekeeper'};
+
+const people = [hobbit, comedian, demonHunter];
+
+people.forEach(person => {
+  console.log(`${person.name}: ${person.jobTitle}`);
+});
