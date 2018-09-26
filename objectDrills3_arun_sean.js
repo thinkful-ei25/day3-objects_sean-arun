@@ -113,28 +113,40 @@ const Character = {
   }
 }; 
 
-function createCharacter(name, nickname, race, origin, attack, deffence, weapon = 'knuckles') { 
-  return Object.assign({}, Character, {name, nickname, race, origin, attack, deffence, weapon});  
-}
-//const createCharacter = (character) => Object.assign(Object.create(Character))
+function characterMixin(obj){ 
+  let attrs = 'dont look at me!'; 
+  function addMixin(){ 
+    return Object.assign(this, Character, {
+      getPrivate : function () { 
+        return attrs; 
+      }, 
+      setPrivate : function (args){ 
+        attrs = args; 
+      }
+    }); 
+  }
+  
+  return addMixin.call(obj); 
+
+} 
 
 const characters = [
-  createCharacter('Gandalf the White', 'gandalf', 'Wizard', 'Middle Earth', 10, 6, 'wizard staff'), 
-  createCharacter('Bilbo Baggins', 'bilbo', 'Hobbit', 'TheShire', 2, 1, 'the Ring'), 
-  createCharacter('Frodo Baggins', 'frodo', 'Hobbit', 'The Shire', 3, 2, 'String and Barrow Blade'), 
-  createCharacter('Aragorn son of Arathorn', 'aragorn', 'Man', 'Dunnedain', 6, 8, 'Anduril'), 
-  createCharacter('Legoals', 'legolas', 'Elf', 'Woodland Realm', 8, 5, 'Bow and Arrow')
-]; 
+  {name : 'Gandalf the White', nickname: 'gandalf', race: 'Wizard', origin: 'Middle Earth', attack :10, defence : 6, weapon : 'wizard staff'}, 
+  {name : 'Bilbo Baggins', nickname : 'bilbo', race : 'Hobbit', origin : 'TheShire', attack: 2, defence: 1, weapon: 'the Ring'}, 
+  
+];
+characters.forEach(characterMixin); 
 
-//const frodo = Object.create(Character, {name : 'f'})
-characters.push(createCharacter('Arwen Undomiel', 'arwen', 'Half-Elf', 'Rvendell', 5, 3, 'Hadhafang')); 
-console.log(characters.find(character => character.nickname === 'aragorn').describe()); 
+characters[0].setPrivate('look at me privately not publicly'); 
+characters.forEach(character => console.log(character.getPrivate())); 
+
+//console.log(characters.find(character => character.nickname === 'gandalf').describe()); 
 
 const hobbits = characters.filter(character => character.race === 'Hobbit'); 
-console.log(hobbits); 
+//console.log(hobbits); 
 
 const highAttackCharacters = characters.filter(character => character.attack > 5); 
-console.log(highAttackCharacters); 
+//console.log(highAttackCharacters); 
 
 
 // const character = createCharacter('feline', 'kitty', 'cat', 'furry place', 'scratch', 'hide'); 
