@@ -24,3 +24,10 @@ const cheese = {
 for (const property in cheese) {
   console.log(`${property}: ${cheese[property]}`);
 }
+
+
+const today = {
+  meals : ['breakfast', 'second breakfast', 'elevenses', 'lunch', 'afternoon tea', 'dinner', 'supper'] 
+}; 
+
+console.log(today.meals[3]); 
