@@ -163,20 +163,10 @@ const HEROES = [
   { id: 7, name: 'Hulk', squad: 'Avengers' },
 ];
 
-function queryValid(obj, query) {
-  let result = true;
-  Object.keys(query).forEach(key => {
-    if (query[key] !== obj[key]) {
-      result = false;
-    }
-  });
-  return result;
-}
-
 function findOne(arr, query) {
   // if every property is query is the same in object, return the first such object
 
-  return arr.find(obj => queryValid(obj, query));
+  return arr.find(obj => Object.keys(query).every(key => query[key] === obj[key]));
 }
 
 console.log(findOne(HEROES, { id: 5, squad: 'Justice League' }));
