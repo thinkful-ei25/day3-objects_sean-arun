@@ -81,25 +81,42 @@ const example = 'craft block argon meter bells brown croon droop';
 console.log(decodeWords(example));
 
 
-function createCharacter(name, nickname, race, origin, attack, deffence, weapon = 'knuckles') {
-  return {
-    name, 
-    nickname, 
-    race, 
-    origin, 
-    attack, 
-    deffence,
-    weapon, 
-    describe: function () {
-      return `${this.name} is a ${this.race} from ${this.origin} who uses ${this.weapon}`;
-    }, 
-    evaluateFight: function(opponent) { 
-      const damageInflicted =this.attack - opponent.deffence;
-      const damageRecieved = opponent.attack - this.deffence; 
-      return `Your opponent takes ${damageInflicted} and you recieve ${damageRecieved}`; 
-    }
-  };
+
+// function createCharacter(name, nickname, race, origin, attack, deffence, weapon = 'knuckles') {
+//   return {
+//     name, 
+//     nickname, 
+//     race, 
+//     origin, 
+//     attack, 
+//     deffence,
+//     weapon, 
+//     describe: function () {
+//       return `${this.name} is a ${this.race} from ${this.origin} who uses ${this.weapon}`;
+//     }, 
+//     evaluateFight: function(opponent) { 
+//       const damageInflicted =this.attack - opponent.deffence;
+//       const damageRecieved = opponent.attack - this.deffence; 
+//       return `Your opponent takes ${damageInflicted} and you recieve ${damageRecieved}`; 
+//     }
+//   };
+// }
+
+const Character = { 
+  describe: function () {
+    return `${this.name} is a ${this.race} from ${this.origin} who uses ${this.weapon}`;
+  }, 
+  evaluateFight: function(opponent) { 
+    const damageInflicted =this.attack - opponent.deffence;
+    const damageRecieved = opponent.attack - this.deffence; 
+    return `Your opponent takes ${damageInflicted} and you recieve ${damageRecieved}`; 
+  }
+}; 
+
+function createCharacter(name, nickname, race, origin, attack, deffence, weapon = 'knuckles') { 
+  return Object.assign(Object.create(Character), {name, nickname, race, origin, attack, deffence, weapon});  
 }
+//const createCharacter = (character) => Object.assign(Object.create(Character))
 
 const characters = [
   createCharacter('Gandalf the White', 'gandalf', 'Wizard', 'Middle Earth', 10, 6, 'wizard staff'), 
@@ -109,6 +126,7 @@ const characters = [
   createCharacter('Legoals', 'legolas', 'Elf', 'Woodland Realm', 8, 5, 'Bow and Arrow')
 ]; 
 
+//const frodo = Object.create(Character, {name : 'f'})
 characters.push(createCharacter('Arwen Undomiel', 'arwen', 'Half-Elf', 'Rvendell', 5, 3, 'Hadhafang')); 
 console.log(characters.find(character => character.nickname === 'aragorn').describe()); 
 
