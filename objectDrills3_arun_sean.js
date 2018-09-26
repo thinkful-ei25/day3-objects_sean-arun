@@ -151,3 +151,32 @@ const highAttackCharacters = characters.filter(character => character.attack > 5
 
 // const character = createCharacter('feline', 'kitty', 'cat', 'furry place', 'scratch', 'hide'); 
 // console.log(character.describe()); 
+
+// BONUS 8:
+const HEROES = [
+  { id: 1, name: 'Captain America', squad: 'Avengers' },
+  { id: 2, name: 'Iron Man', squad: 'Avengers' },
+  { id: 3, name: 'Spiderman', squad: 'Avengers' },
+  { id: 4, name: 'Superman', squad: 'Justice League' },
+  { id: 5, name: 'Wonder Woman', squad: 'Justice League' },
+  { id: 6, name: 'Aquaman', squad: 'Justice League' },
+  { id: 7, name: 'Hulk', squad: 'Avengers' },
+];
+
+function queryValid(obj, query) {
+  let result = true;
+  Object.keys(query).forEach(key => {
+    if (query[key] !== obj[key]) {
+      result = false;
+    }
+  });
+  return result;
+}
+
+function findOne(arr, query) {
+  // if every property is query is the same in object, return the first such object
+
+  return arr.find(obj => queryValid(obj, query));
+}
+
+console.log(findOne(HEROES, { id: 5, squad: 'Justice League' }));
