@@ -53,3 +53,29 @@ people.forEach(person => {
   if (person.boss) console.log(`${person.jobTitle} ${person.name} reports to ${person.boss.name} `);
   else console.log(`${person.jobTitle} ${person.name} doesn't report to anybody`); 
 });
+
+function decode(word) {
+  const cipher = {
+    a: 1,
+    b: 2,
+    c: 3,
+    d: 4
+  };
+
+  // const index = cipher[word[0]];
+  // if (!index) {
+  //   return ' ';
+  // }
+  
+  // return word[index];
+  return cipher[word[0]] ? word[cipher[word[0]]] : ' ';
+}
+
+function decodeWords(sentence) {
+  let words = sentence.split(' ');
+  words = words.map(word => decode(word));
+  return words.join('');
+}
+
+const example = 'craft block argon meter bells brown croon droop';
+console.log(decodeWords(example));
