@@ -12,3 +12,15 @@ const loaf = {
 console.log(loaf.flour); 
 console.log(loaf.water); 
 console.log(loaf.hydration()); 
+
+const cheese = {
+  foo: 'foo',
+  bar: 'bar',
+  fum: 'fum',
+  quux: 'quux',
+  spam: 'spamValue'
+};
+
+for (const property in cheese) {
+  console.log(`${property}: ${cheese[property]}`);
+}
