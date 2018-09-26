@@ -114,7 +114,7 @@ const Character = {
 }; 
 
 function createCharacter(name, nickname, race, origin, attack, deffence, weapon = 'knuckles') { 
-  return Object.assign(Object.create(Character), {name, nickname, race, origin, attack, deffence, weapon});  
+  return Object.assign({}, Character, {name, nickname, race, origin, attack, deffence, weapon});  
 }
 //const createCharacter = (character) => Object.assign(Object.create(Character))
 
